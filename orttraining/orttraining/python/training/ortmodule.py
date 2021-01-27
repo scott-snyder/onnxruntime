@@ -385,10 +385,11 @@ class ORTModule(torch.nn.Module):
         '''Exports PyTorch `module` to ONNX with training flag, using `*inputs` as input
 
         TODO: How to support dynamic axes? Dimensions are determined by samples
-        TODO: How to ingest **kwargs in proper order during export?
         '''
         # Export the model to memory
         f = io.BytesIO()
+
+        ff = open("model-" + str(inputs) + str(kwargs) + ".onnx")
 
         # Deepcopy inputs, since input values may change after model run.
         sample_inputs_copy = copy.deepcopy(inputs)
@@ -411,12 +412,22 @@ class ORTModule(torch.nn.Module):
 
         # Export torch.nn.Module to ONNX
         torch.onnx.export(module,
-                          tuple(sample_inputs_copy),
+                          (tuple(sample_inputs_copy), kwargs),
                           f,
                           input_names=input_names,
                           opset_version=ONNX_OPSET_VERSION,
                           do_constant_folding=False,
                           training=torch.onnx.TrainingMode.TRAINING,
                           dynamic_axes=dynamic_axes)
+
+        torch.onnx.export(module,
+                          (tuple(sample_inputs_copy), kwargs),
+                          ff,
+                          input_names=input_names,
+                          opset_version=ONNX_OPSET_VERSION,
+                          do_constant_folding=False,
+                          training=torch.onnx.TrainingMode.TRAINING,
+                          dynamic_axes=dynamic_axes)
+        ff.close()
 
         return onnx.load_model_from_string(f.getvalue())
