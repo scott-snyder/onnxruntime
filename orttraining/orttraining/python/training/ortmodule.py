@@ -389,7 +389,7 @@ class ORTModule(torch.nn.Module):
         # Export the model to memory
         f = io.BytesIO()
 
-        ff = open("model-" + str(inputs) + str(kwargs) + ".onnx")
+        ff = open("model-" + str(inputs) + str(kwargs) + ".onnx", mode="w+b")
 
         # Deepcopy inputs, since input values may change after model run.
         sample_inputs_copy = copy.deepcopy(inputs)
