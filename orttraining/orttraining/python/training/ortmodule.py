@@ -412,7 +412,7 @@ class ORTModule(torch.nn.Module):
 
         # Export torch.nn.Module to ONNX
         torch.onnx.export(module,
-                          tuple(sample_inputs_copy + [kwargs]),
+                          tuple(sample_inputs_copy + (kwargs)),
                           f,
                           input_names=input_names,
                           opset_version=ONNX_OPSET_VERSION,
@@ -421,7 +421,7 @@ class ORTModule(torch.nn.Module):
                           dynamic_axes=dynamic_axes)
 
         torch.onnx.export(module,
-                          tuple(sample_inputs_copy + [kwargs]),
+                          tuple(sample_inputs_copy + (kwargs)]),
                           ff,
                           input_names=input_names,
                           opset_version=ONNX_OPSET_VERSION,
