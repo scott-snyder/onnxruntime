@@ -203,12 +203,8 @@ class ORTModule(torch.nn.Module):
             if self._save_onnx:
                 onnx.save(self._onnx_training, self._save_onnx_prefix + '_full_training.onnx')
 
-        # Perform shape inference and re-split forward/backward graph for bacthes with different shapes
-        _, input_tensors = ORTModule._extract_user_inputs(self._original_module, *inputs, **kwargs)
-        new_input_shape = [list(input.size()) for input in input_tensors if input is not None]
-        if self._current_input_shape is None or self._current_input_shape != new_input_shape:
-            self._current_input_shape = new_input_shape
-            self._module_gradient_graph_builder.build(self._current_input_shape)
+        if self._onnx_gradient is None:
+            self._module_gradient_graph_builder.build()
             self._onnx_gradient = onnx.load_model_from_string(self._module_gradient_graph_builder.get_gradient_model())
             self._onnx_graphs_info = self._module_gradient_graph_builder.get_split_graphs_info()
 
