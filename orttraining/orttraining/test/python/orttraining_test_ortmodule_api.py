@@ -321,7 +321,6 @@ def test_exception_raised_for_dict_return_value_module(device):
 
     with pytest.raises(NotImplementedError) as not_implemented_error:
         model(x, y, z)
-
     assert str(not_implemented_error.value) == 'Dictionaries are not supported as output yet'
 
 @pytest.mark.parametrize("device", ['cpu', 'cuda'])
