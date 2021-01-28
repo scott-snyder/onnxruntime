@@ -77,7 +77,21 @@ def _onnx_value_info_to_buffer_tensor(value_info, device):
     dtype = _utils.dtype_onnx_to_torch(value_info.type.tensor_type.elem_type)
     return torch.zeros(shape, device=device, dtype=dtype)
 
-def _generate_outputs_for_onnx_export(module, inputs):
+def _parse_inputs_for_onnx_export(module, inputs):
+    # Ignore optional *inputs explicitly specified as None
+    sig = signature(module.forward)
+    all_input_names = sig.parameters.keys()
+    input_names = []
+    dynamic_axes = {}
+    for input_idx, name in enumerate(all_input_names):
+        if input_idx < len(inputs) and inputs[input_idx] is not None:
+            input_names.append(name)
+            dynamic_axes[name] = {}
+            for dim_idx in range(len(inputs[input_idx].shape)):
+                dynamic_axes[name].update({dim_idx : 'input{}_dim{}'.format(input_idx, dim_idx)})
+    return input_names, dynamic_axes
+
+def _parse_outputs_for_onnx_export(module, inputs):
     #   Do an inference to grab outputs
     is_train_mode = module.training
     module.eval()
@@ -485,30 +499,19 @@ class ORTModule(torch.nn.Module):
         TODO: How to support dynamic axes? Dimensions are determined by samples
         TODO: How to ingest **kwargs in proper order during export?
         '''
-        # Export the model to memory
-        f = io.BytesIO()
 
-        # Ignore optional *inputs explicitly specified as None
-        sig = signature(module.forward)
-        all_input_names = sig.parameters.keys()
-        input_names = []
-        dynamic_axes = {}
-        for input_idx, name in enumerate(all_input_names):
-            if input_idx < len(inputs) and inputs[input_idx] is not None:
-                input_names.append(name)
-                dynamic_axes[name] = {}
-                for dim_idx in range(len(inputs[input_idx].shape)):
-                    dynamic_axes[name].update({dim_idx : 'input{}_dim{}'.format(input_idx, dim_idx)})
-
-        # Setup dynamic axes for outputs
-        output_names, output_dynamic_axes = _generate_outputs_for_onnx_export(module, inputs)
+        # Setup dynamic axes for onnx model
+        input_names, dynamic_axes = _parse_inputs_for_onnx_export(module, inputs)
+        output_names, output_dynamic_axes = _parse_outputs_for_onnx_export(module, inputs)
         dynamic_axes.update(output_dynamic_axes)
 
         # TODO: Support contrib OPs support? user model has no hint
         # from onnxruntime.training import register_custom_ops_pytorch_exporter
         # register_custom_ops_pytorch_exporter.register_custom_op()
 
+
         # Export torch.nn.Module to ONNX
+        f = io.BytesIO()
         # Deepcopy inputs, since input values may change after model run.
         # NOTE: Inputs may contain tensors that have attributes preventing their deepcopy (example grad_fn).
         # Therefore, deepcopy only the data component of the input tensors for export.
