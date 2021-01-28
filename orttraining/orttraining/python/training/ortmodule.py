@@ -405,6 +405,11 @@ class ORTModule(torch.nn.Module):
                 dynamic_axes[name] = {}
                 for dim_idx in range(len(inputs[input_idx].shape)):
                     dynamic_axes[name].update({dim_idx : f'input{input_idx}_dim{dim_idx}'})
+            if name in kwargs and kwargs[name] is not None:
+                input_names.append(name)
+                dynamic_axes[name] = {}
+                for dim_idx in range(len(kwargs[name].shape)):
+                    dynamic_axes[name].update({dim_idx : f'input_{name}_dim{dim_idx}'})
 
         # TODO: Support contrib OPs support? user model has no hint
         # from onnxruntime.training import register_custom_ops_pytorch_exporter
