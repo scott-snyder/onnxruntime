@@ -4,6 +4,7 @@
 
 import torch
 import pytest
+from transformers import AutoConfig, BertForSequenceClassification
 
 import onnxruntime
 from onnxruntime.training import ORTModule
@@ -364,3 +365,55 @@ def test_exception_raised_for_custom_class_return_value_module(device):
         model(x, y, z)
 
     assert 'Unexpected output type' in str(runtime_error.value)
+
+def test_dynamic_axes_config():
+    device = 'cuda'
+
+    def assert_is_dynamic_axes(model):
+        # Check inputs
+        for inp in model._onnx_training.graph.input:
+            shape = inp.type.tensor_type.shape
+            if shape:
+                for dim in shape.dim:
+                    if dim.dim_param and not isinstance(dim.dim_param, str):
+                        return False
+
+        # Check outputs
+        for out in model._onnx_training.graph.output:
+            shape = out.type.tensor_type.shape
+            if shape:
+                for dim in shape.dim:
+                    if dim.dim_param and not isinstance(dim.dim_param, str):
+                        return False
+        return True
+
+    # Model 1
+    N, D_in, H, D_out = 64, 784, 500, 10
+    model = NeuralNetSinglePositionalArgument(D_in, H, D_out).to(device)
+    model = ORTModule(model)
+    x = torch.randn(N, D_in, device=device)
+    output = model(x)
+    assert output is not None
+    assert assert_is_dynamic_axes(model)
+    del model, output
+
+    # Model 2
+    config = AutoConfig.from_pretrained(
+            "bert-base-uncased",
+            num_labels=2,
+            num_hidden_layers=1,
+            output_attentions = False,
+            output_hidden_states = False,
+    )
+    model = BertForSequenceClassification.from_pretrained(
+        "bert-base-uncased",
+        config=config,
+    )
+    model = ORTModule(model).to(device)
+
+    x = torch.randint(0, 100, (32, 64), dtype=torch.long, device=device)
+    y = torch.randint(0, 100, (32, 64), dtype=torch.long, device=device)
+    z = torch.randint(0, 1, (32,), dtype=torch.long, device=device)
+    output = model(x, y, None, None, None, None, z)
+    assert output is not None
+    assert assert_is_dynamic_axes(model)
