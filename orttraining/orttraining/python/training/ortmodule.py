@@ -128,7 +128,7 @@ def _parse_outputs_for_onnx_export(module, inputs):
                 output_names += tmp_output_names
                 output_dynamic_axes.update(tmp_output_dynamic_axes)
         else:
-            raise RuntimeError('Unexpected output type {}'.format(type(sample_outputs)))
+            raise RuntimeError('ORTModule does not support the following model output type {}'.format(type(sample_outputs)))
     if is_train_mode:
         module.train()
     return output_names, output_dynamic_axes

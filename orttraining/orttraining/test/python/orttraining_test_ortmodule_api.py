@@ -362,8 +362,7 @@ def test_exception_raised_for_custom_class_return_value_module(device):
 
     with pytest.raises(RuntimeError) as runtime_error:
         model(x, y, z)
-
-    assert 'Unexpected output type' in str(runtime_error.value)
+    assert 'ORTModule does not support the following model output type' in str(runtime_error.value)
 
 def test_dynamic_axes_config():
     device = 'cuda'
