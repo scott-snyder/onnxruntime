@@ -624,7 +624,7 @@ class ORTTrainer(object):
         ort_parameters.enable_adasum = self.options.distributed.enable_adasum
         ort_parameters.deepspeed_zero_stage = self.options.distributed.deepspeed_zero_optimization.stage
         ort_parameters.enable_grad_norm_clip = self.options.utils.grad_norm_clip
-        ort_parameters.set_gradients_as_graph_outputs = True
+        ort_parameters.set_gradients_as_graph_outputs = False
         ort_parameters.use_invertible_layernorm_grad = self.options.utils.invertible_layer_norm_gradient
         ort_parameters.training_optimizer_name = self.optim_config.name
         ort_parameters.lr_params_feed_name = self.model_desc.learning_rate.name
