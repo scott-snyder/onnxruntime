@@ -69,6 +69,12 @@ def _create_iobinding(io_binding, inputs, model, device):
         io_binding.bind_output(value_info.name, device.type,
                                device_id=_get_device_index(device))
 
+def _deepcopy_model_input(*inputs, **kwargs):
+    sample_inputs_copy = []
+    for model_input in inputs:
+        sample_inputs_copy.append(model_input.data if isinstance(model_input, torch.Tensor) else model_input)
+    sample_inputs_copy = copy.deepcopy(tuple(sample_inputs_copy))
+    return sample_inputs_copy
 
 def _onnx_value_info_to_buffer_tensor(value_info, device):
     '''Create a torch zeroed tensor with the same shape and type of `value_info`'''
@@ -97,7 +103,7 @@ def _parse_outputs_for_onnx_export(module, inputs):
     module.eval()
     with torch.no_grad():
         # Deepcopy inputs, since input values may change after model run.
-        sample_inputs_copy = copy.deepcopy(inputs)
+        sample_inputs_copy = _deepcopy_model_input(*inputs)
         try:
             # Deepcopy model, in case model is stateful and changes after model run.
             model_copy = copy.deepcopy(module)
@@ -501,8 +507,8 @@ class ORTModule(torch.nn.Module):
         '''
 
         # Setup dynamic axes for onnx model
-        input_names, dynamic_axes = _parse_inputs_for_onnx_export(module, inputs)
-        output_names, output_dynamic_axes = _parse_outputs_for_onnx_export(module, inputs)
+        input_names, dynamic_axes = _parse_inputs_for_onnx_export(self._original_module, inputs)
+        output_names, output_dynamic_axes = _parse_outputs_for_onnx_export(self._original_module, inputs)
         dynamic_axes.update(output_dynamic_axes)
 
         # TODO: Support contrib OPs support? user model has no hint
@@ -515,10 +521,7 @@ class ORTModule(torch.nn.Module):
         # Deepcopy inputs, since input values may change after model run.
         # NOTE: Inputs may contain tensors that have attributes preventing their deepcopy (example grad_fn).
         # Therefore, deepcopy only the data component of the input tensors for export.
-        sample_inputs_copy = []
-        for model_input in inputs:
-            sample_inputs_copy.append(model_input.data if isinstance(model_input, torch.Tensor) else model_input)
-        sample_inputs_copy = copy.deepcopy(tuple(sample_inputs_copy))
+        sample_inputs_copy = _deepcopy_model_input(*inputs, **kwargs)
         torch.onnx.export(self._original_module,
                           sample_inputs_copy,
                           f,
