@@ -266,32 +266,32 @@ typedef enum OrtOpAttrType {
  * @{
  */
 // The actual types defined have an Ort prefix
-ORT_RUNTIME_CLASS(Env);
-ORT_RUNTIME_CLASS(Status);  // nullptr for Status* indicates success
-ORT_RUNTIME_CLASS(MemoryInfo);
-ORT_RUNTIME_CLASS(IoBinding);
-ORT_RUNTIME_CLASS(Session);  // Don't call ReleaseSession from Dllmain (because session owns a thread pool)
-ORT_RUNTIME_CLASS(Value);
-ORT_RUNTIME_CLASS(RunOptions);
-ORT_RUNTIME_CLASS(TypeInfo);
-ORT_RUNTIME_CLASS(TensorTypeAndShapeInfo);
-ORT_RUNTIME_CLASS(MapTypeInfo);
-ORT_RUNTIME_CLASS(SequenceTypeInfo);
-ORT_RUNTIME_CLASS(OptionalTypeInfo);
-ORT_RUNTIME_CLASS(SessionOptions);
-ORT_RUNTIME_CLASS(CustomOpDomain);
-ORT_RUNTIME_CLASS(ModelMetadata);
-ORT_RUNTIME_CLASS(ThreadPoolParams);
-ORT_RUNTIME_CLASS(ThreadingOptions);
-ORT_RUNTIME_CLASS(ArenaCfg);
-ORT_RUNTIME_CLASS(PrepackedWeightsContainer);
-ORT_RUNTIME_CLASS(TensorRTProviderOptionsV2);
-ORT_RUNTIME_CLASS(CUDAProviderOptionsV2);
-ORT_RUNTIME_CLASS(CANNProviderOptions);
-ORT_RUNTIME_CLASS(DnnlProviderOptions);
-ORT_RUNTIME_CLASS(Op);
-ORT_RUNTIME_CLASS(OpAttr);
-ORT_RUNTIME_CLASS(Logger);
+ORT_RUNTIME_CLASS(Env)
+ORT_RUNTIME_CLASS(Status)  // nullptr for Status* indicates success
+ORT_RUNTIME_CLASS(MemoryInfo)
+ORT_RUNTIME_CLASS(IoBinding)
+ORT_RUNTIME_CLASS(Session)  // Don't call ReleaseSession from Dllmain (because session owns a thread pool)
+ORT_RUNTIME_CLASS(Value)
+ORT_RUNTIME_CLASS(RunOptions)
+ORT_RUNTIME_CLASS(TypeInfo)
+ORT_RUNTIME_CLASS(TensorTypeAndShapeInfo)
+ORT_RUNTIME_CLASS(MapTypeInfo)
+ORT_RUNTIME_CLASS(SequenceTypeInfo)
+ORT_RUNTIME_CLASS(OptionalTypeInfo)
+ORT_RUNTIME_CLASS(SessionOptions)
+ORT_RUNTIME_CLASS(CustomOpDomain)
+ORT_RUNTIME_CLASS(ModelMetadata)
+ORT_RUNTIME_CLASS(ThreadPoolParams)
+ORT_RUNTIME_CLASS(ThreadingOptions)
+ORT_RUNTIME_CLASS(ArenaCfg)
+ORT_RUNTIME_CLASS(PrepackedWeightsContainer)
+ORT_RUNTIME_CLASS(TensorRTProviderOptionsV2)
+ORT_RUNTIME_CLASS(CUDAProviderOptionsV2)
+ORT_RUNTIME_CLASS(CANNProviderOptions)
+ORT_RUNTIME_CLASS(DnnlProviderOptions;
+ORT_RUNTIME_CLASS(Op)
+ORT_RUNTIME_CLASS(OpAttr)
+ORT_RUNTIME_CLASS(Logger)
 
 #ifdef _WIN32
 typedef _Return_type_success_(return == 0) OrtStatus* OrtStatusPtr;
