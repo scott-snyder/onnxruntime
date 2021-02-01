@@ -1,0 +1,10 @@
+--- abseil_cpp-src/absl/strings/internal/str_format/extension.h-orig	2023-05-20 21:41:14.491284658 -0400
++++ abseil_cpp-src/absl/strings/internal/str_format/extension.h	2023-05-20 21:41:23.561355064 -0400
+@@ -19,6 +19,7 @@
+ #include <limits.h>
+ 
+ #include <cstddef>
++#include <cstdint>
+ #include <cstring>
+ #include <ostream>
+ 
