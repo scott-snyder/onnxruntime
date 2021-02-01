@@ -461,14 +461,14 @@ if(CMAKE_CROSSCOMPILING)
 endif()
 
 #Need python to generate def file
-if(onnxruntime_BUILD_SHARED_LIB OR onnxruntime_ENABLE_PYTHON)
-  if(onnxruntime_ENABLE_PYTHON)
-    find_package(PythonInterp 3.5 REQUIRED)
-    find_package(PythonLibs 3.5 REQUIRED)
-  else()
-    find_package(PythonInterp 3.4 REQUIRED)
-  endif()
-endif()
+#if(onnxruntime_BUILD_SHARED_LIB OR onnxruntime_ENABLE_PYTHON)
+#  if(onnxruntime_ENABLE_PYTHON)
+#    find_package(PythonInterp 3.5 REQUIRED)
+#    find_package(PythonLibs 3.5 REQUIRED)
+#  else()
+#    find_package(PythonInterp 3.4 REQUIRED)
+#  endif()
+#endif()
 
 #target begins from here
 
