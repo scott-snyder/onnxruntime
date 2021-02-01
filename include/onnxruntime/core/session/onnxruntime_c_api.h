@@ -158,22 +158,22 @@ typedef struct OrtArenaCfg {
   typedef struct Ort##X Ort##X;
 
 // The actual types defined have an Ort prefix
-ORT_RUNTIME_CLASS(Env);
-ORT_RUNTIME_CLASS(Status);  // nullptr for Status* indicates success
-ORT_RUNTIME_CLASS(MemoryInfo);
-ORT_RUNTIME_CLASS(IoBinding);
-ORT_RUNTIME_CLASS(Session);  //Don't call OrtReleaseSession from Dllmain (because session owns a thread pool)
-ORT_RUNTIME_CLASS(Value);
-ORT_RUNTIME_CLASS(RunOptions);
-ORT_RUNTIME_CLASS(TypeInfo);
-ORT_RUNTIME_CLASS(TensorTypeAndShapeInfo);
-ORT_RUNTIME_CLASS(SessionOptions);
-ORT_RUNTIME_CLASS(CustomOpDomain);
-ORT_RUNTIME_CLASS(MapTypeInfo);
-ORT_RUNTIME_CLASS(SequenceTypeInfo);
-ORT_RUNTIME_CLASS(ModelMetadata);
-ORT_RUNTIME_CLASS(ThreadPoolParams);
-ORT_RUNTIME_CLASS(ThreadingOptions);
+ORT_RUNTIME_CLASS(Env)
+ORT_RUNTIME_CLASS(Status)  // nullptr for Status* indicates success
+ORT_RUNTIME_CLASS(MemoryInfo)
+ORT_RUNTIME_CLASS(IoBinding)
+ORT_RUNTIME_CLASS(Session)  //Don't call OrtReleaseSession from Dllmain (because session owns a thread pool)
+ORT_RUNTIME_CLASS(Value)
+ORT_RUNTIME_CLASS(RunOptions)
+ORT_RUNTIME_CLASS(TypeInfo)
+ORT_RUNTIME_CLASS(TensorTypeAndShapeInfo)
+ORT_RUNTIME_CLASS(SessionOptions)
+ORT_RUNTIME_CLASS(CustomOpDomain)
+ORT_RUNTIME_CLASS(MapTypeInfo)
+ORT_RUNTIME_CLASS(SequenceTypeInfo)
+ORT_RUNTIME_CLASS(ModelMetadata)
+ORT_RUNTIME_CLASS(ThreadPoolParams)
+ORT_RUNTIME_CLASS(ThreadingOptions)
 
 #ifdef _WIN32
 typedef _Return_type_success_(return == 0) OrtStatus* OrtStatusPtr;

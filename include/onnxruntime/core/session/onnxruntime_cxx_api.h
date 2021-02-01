@@ -83,21 +83,21 @@ std::vector<std::string> GetAvailableProviders();
 #define ORT_DEFINE_RELEASE(NAME) \
   inline void OrtRelease(Ort##NAME* ptr) { GetApi().Release##NAME(ptr); }
 
-ORT_DEFINE_RELEASE(Allocator);
-ORT_DEFINE_RELEASE(MemoryInfo);
-ORT_DEFINE_RELEASE(CustomOpDomain);
-ORT_DEFINE_RELEASE(Env);
-ORT_DEFINE_RELEASE(RunOptions);
-ORT_DEFINE_RELEASE(Session);
-ORT_DEFINE_RELEASE(SessionOptions);
-ORT_DEFINE_RELEASE(TensorTypeAndShapeInfo);
-ORT_DEFINE_RELEASE(SequenceTypeInfo);
-ORT_DEFINE_RELEASE(MapTypeInfo);
-ORT_DEFINE_RELEASE(TypeInfo);
-ORT_DEFINE_RELEASE(Value);
-ORT_DEFINE_RELEASE(ModelMetadata);
-ORT_DEFINE_RELEASE(ThreadingOptions);
-ORT_DEFINE_RELEASE(IoBinding);
+ORT_DEFINE_RELEASE(Allocator)
+ORT_DEFINE_RELEASE(MemoryInfo)
+ORT_DEFINE_RELEASE(CustomOpDomain)
+ORT_DEFINE_RELEASE(Env)
+ORT_DEFINE_RELEASE(RunOptions)
+ORT_DEFINE_RELEASE(Session)
+ORT_DEFINE_RELEASE(SessionOptions)
+ORT_DEFINE_RELEASE(TensorTypeAndShapeInfo)
+ORT_DEFINE_RELEASE(SequenceTypeInfo)
+ORT_DEFINE_RELEASE(MapTypeInfo)
+ORT_DEFINE_RELEASE(TypeInfo)
+ORT_DEFINE_RELEASE(Value)
+ORT_DEFINE_RELEASE(ModelMetadata)
+ORT_DEFINE_RELEASE(ThreadingOptions)
+ORT_DEFINE_RELEASE(IoBinding)
 
 // This is used internally by the C++ API. This is the common base class used by the wrapper objects.
 template <typename T>
