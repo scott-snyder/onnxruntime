@@ -328,6 +328,8 @@ namespace std { using ::getenv; }
       target_compile_options(flatc PRIVATE /FI${CMAKE_BINARY_DIR}/gdk_cstdlib_wrapper.h)
     endif()
   endif()
+else()
+  add_library(flatbuffers::flatbuffers ALIAS flatbuffers::flatbuffers_shared)
 endif()
 
 if (onnxruntime_BUILD_UNIT_TESTS)
