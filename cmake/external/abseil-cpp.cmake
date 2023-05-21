@@ -8,7 +8,7 @@ set(ABSL_PROPAGATE_CXX_STD 1)
 set(BUILD_TESTING 0)
 
 if(Patch_FOUND)
-  set(ABSL_PATCH_COMMAND ${Patch_EXECUTABLE} --ignore-whitespace -p1 < ${PROJECT_SOURCE_DIR}/patches/abseil/Fix_Nvidia_Build_Break.patch)
+  set(ABSL_PATCH_COMMAND cat ${PROJECT_SOURCE_DIR}/patches/abseil/Fix_Nvidia_Build_Break.patch ${PROJECT_SOURCE_DIR}/patches/abseil/abseil-cstdint.patch |  ${Patch_EXECUTABLE} --ignore-whitespace -p1 )
 else()
   set(ABSL_PATCH_COMMAND git apply --ignore-space-change --ignore-whitespace ${PROJECT_SOURCE_DIR}/patches/abseil/Fix_Nvidia_Build_Break.patch)
 endif()
