@@ -1,9 +1,15 @@
 {
   "version": 5,
-  "prev": null,
-  "head": "baeece44ba075009c6bfe95891a8c1b3d4571cb3",
-  "applied": [],
+  "prev": "d1c4f5658a7a4c3e018a3c357c36f86f2d2df6f2",
+  "head": "375ccfc629fdfc630eb7395ec20efef6048b05d3",
+  "applied": [
+    "local"
+  ],
   "unapplied": [],
   "hidden": [],
-  "patches": {}
+  "patches": {
+    "local": {
+      "oid": "375ccfc629fdfc630eb7395ec20efef6048b05d3"
+    }
+  }
 }
