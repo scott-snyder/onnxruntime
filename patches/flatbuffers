@@ -1,6 +1,0 @@
-Bottom: dcce458da0c8e90b9dda8d945b734324de083f6d
-Top:    dcce458da0c8e90b9dda8d945b734324de083f6d
-Author: scott snyder <sss@karma>
-Date:   2024-05-20 10:56:34 -0400
-
-Compatibility with flatbuffers 23.5.26.6
