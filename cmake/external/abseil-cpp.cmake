@@ -47,6 +47,7 @@ if (GDK_PLATFORM)
   target_compile_definitions(absl_symbolize PRIVATE WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP)
 endif()
 
+if(NOT onnxruntime_DISABLE_ABSEIL)
 # TODO: since multiple ORT's dependencies depend on Abseil, the list below would vary from version to version.
 # We'd better to not manually manage the list.
 set(ABSEIL_LIBS
@@ -143,3 +144,4 @@ absl::memory
 absl::charset
 absl::endian
 absl::config)
+endif()

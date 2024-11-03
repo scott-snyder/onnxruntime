@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+#if __GNUC__ >= 14
+#pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
+#endif
+
 #include "core/optimizer/selectors_actions/selector_action_transformer.h"
 
 #include <algorithm>
