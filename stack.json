@@ -1,15 +1,19 @@
 {
   "version": 5,
-  "prev": "a5de1f110744a7c2f94ccc8aebcc66f348a46e55",
-  "head": "77c5881a2a9c544b5ea2c97f99741947bbbe7626",
+  "prev": "b7314fc95efcd11d38dd1e2b5cf1231eeb32fa90",
+  "head": "569ad9c84ff7846be6af70da0fae167fba3f3b3f",
   "applied": [
-    "local"
+    "local",
+    "flatbuffers25"
   ],
   "unapplied": [],
   "hidden": [],
   "patches": {
     "local": {
       "oid": "77c5881a2a9c544b5ea2c97f99741947bbbe7626"
+    },
+    "flatbuffers25": {
+      "oid": "569ad9c84ff7846be6af70da0fae167fba3f3b3f"
     }
   }
 }
