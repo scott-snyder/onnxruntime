@@ -1,11 +1,10 @@
 {
   "version": 5,
-  "prev": "748a039c41fac1d4985ef03058f0006f6bf3ccc5",
-  "head": "158e1125516be0df781f0f5b85e18363ce702bd7",
+  "prev": "63ab0559913953415b76e371de9ef2dd9a993c3b",
+  "head": "012394c161c57cf5665295c82bb1892e2259ec9c",
   "applied": [
     "local",
-    "abseil-20240722",
-    "refresh-temp"
+    "abseil-20240722"
   ],
   "unapplied": [
     "flatbuffers25"
@@ -13,13 +12,10 @@
   "hidden": [],
   "patches": {
     "local": {
-      "oid": "77c5881a2a9c544b5ea2c97f99741947bbbe7626"
+      "oid": "002d1c9d3964b483348733b928c01e16daf7af42"
     },
     "abseil-20240722": {
-      "oid": "c8433532f7acc3fcbb73ad11f296ee8c2b516f0c"
-    },
-    "refresh-temp": {
-      "oid": "158e1125516be0df781f0f5b85e18363ce702bd7"
+      "oid": "012394c161c57cf5665295c82bb1892e2259ec9c"
     },
     "flatbuffers25": {
       "oid": "da7d531e9bd0ecc9294469815b30deb3c2a96326"
