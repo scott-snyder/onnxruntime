@@ -1,10 +1,9 @@
 {
   "version": 5,
-  "prev": "40abb54bfc7ed56b0b960368ee6dc1752bb8e8fa",
-  "head": "027546c93dc88aff3e2cad6678886e0fa0d0fd20",
+  "prev": "9adab78c6bc0b4a5af85e9de5e0c11ed585e21d1",
+  "head": "e9371bdaee78d9fb04a15814c3aabf512c06f087",
   "applied": [
-    "local2",
-    "refresh-temp"
+    "local2"
   ],
   "unapplied": [
     "local",
@@ -14,10 +13,7 @@
   "hidden": [],
   "patches": {
     "local2": {
-      "oid": "fd63bc0621a4d013890ab90900926b14a3faf451"
-    },
-    "refresh-temp": {
-      "oid": "027546c93dc88aff3e2cad6678886e0fa0d0fd20"
+      "oid": "e9371bdaee78d9fb04a15814c3aabf512c06f087"
     },
     "local": {
       "oid": "002d1c9d3964b483348733b928c01e16daf7af42"
