@@ -1,10 +1,11 @@
 {
   "version": 5,
-  "prev": "b528903a3cee665e49aa3f790d2a07f11ee440fd",
-  "head": "fc20710bd122bf136ee37abc87c1b2222559d366",
+  "prev": "1ac2cf7fd9212848eb8f6b87e18e50cd48791baa",
+  "head": "35bd989f362dffd3db3a5a2b45839a26772f5b9e",
   "applied": [
     "local",
-    "flatbuffers25"
+    "flatbuffers25",
+    "abseil-20240722"
   ],
   "unapplied": [],
   "hidden": [],
@@ -14,6 +15,9 @@
     },
     "flatbuffers25": {
       "oid": "fc20710bd122bf136ee37abc87c1b2222559d366"
+    },
+    "abseil-20240722": {
+      "oid": "35bd989f362dffd3db3a5a2b45839a26772f5b9e"
     }
   }
 }
