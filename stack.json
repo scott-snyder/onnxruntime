@@ -1,9 +1,9 @@
 {
   "version": 5,
-  "prev": "9f1693fdc4977b073debe0b0dbd065964d26d071",
+  "prev": "e01a79da28054049e1a8da5c05f476b7496626f5",
   "head": "e9371bdaee78d9fb04a15814c3aabf512c06f087",
   "applied": [
-    "local2"
+    "local"
   ],
   "unapplied": [
     "abseil-20240722",
@@ -11,7 +11,7 @@
   ],
   "hidden": [],
   "patches": {
-    "local2": {
+    "local": {
       "oid": "e9371bdaee78d9fb04a15814c3aabf512c06f087"
     },
     "abseil-20240722": {
