@@ -27,7 +27,7 @@ FetchContent_Declare(
     URL ${DEP_URL_abseil_cpp}
     URL_HASH SHA1=${DEP_SHA1_abseil_cpp}
     PATCH_COMMAND ${ABSL_PATCH_COMMAND}
-    FIND_PACKAGE_ARGS 20240116 NAMES absl
+    FIND_PACKAGE_ARGS 20260107 NAMES absl
 )
 
 onnxruntime_fetchcontent_makeavailable(abseil_cpp)
@@ -108,7 +108,7 @@ absl::absl_check
 absl::hash_function_defaults
 absl::function_ref
 absl::city
-absl::low_level_hash
+#absl::low_level_hash
 absl::fixed_array
 absl::variant
 absl::meta
