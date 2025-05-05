@@ -4,13 +4,13 @@
 #ifndef FLATBUFFERS_GENERATED_ORTTRAININGCHECKPOINT_ONNXRUNTIME_FBS_H_
 #define FLATBUFFERS_GENERATED_ORTTRAININGCHECKPOINT_ONNXRUNTIME_FBS_H_
 
-#include "core/common/flatbuffers.h"
+#include "flatbuffers/flatbuffers.h"
 
 // Ensure the included flatbuffers.h is the same version as when this file was
 // generated, otherwise it may not be compatible.
-static_assert(FLATBUFFERS_VERSION_MAJOR == 23 &&
-              FLATBUFFERS_VERSION_MINOR == 5 &&
-              FLATBUFFERS_VERSION_REVISION == 26,
+static_assert(FLATBUFFERS_VERSION_MAJOR == 25 &&
+              FLATBUFFERS_VERSION_MINOR == 12 &&
+              FLATBUFFERS_VERSION_REVISION == 19,
              "Non-compatible flatbuffers version included");
 
 #include "ort.fbs.h"
@@ -62,7 +62,8 @@ struct ModuleState FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   bool has_external_data() const {
     return GetField<uint8_t>(VT_HAS_EXTERNAL_DATA, 0) != 0;
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_REQUIRES_GRAD_PARAMS) &&
            verifier.VerifyVector(requires_grad_params()) &&
@@ -145,7 +146,8 @@ struct ParameterOptimizerState FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::
   const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::Tensor>> *momentums() const {
     return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::Tensor>> *>(VT_MOMENTUMS);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_PARAM_NAME) &&
            verifier.VerifyString(param_name()) &&
@@ -219,7 +221,8 @@ struct OptimizerGroup FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::ParameterOptimizerState>> *optimizer_states() const {
     return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::ParameterOptimizerState>> *>(VT_OPTIMIZER_STATES);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_GROUP_NAME) &&
            verifier.VerifyString(group_name()) &&
@@ -301,7 +304,8 @@ struct IntProperty FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   int64_t value() const {
     return GetField<int64_t>(VT_VALUE, 0);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_NAME) &&
            verifier.VerifyString(name()) &&
@@ -364,7 +368,8 @@ struct FloatProperty FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   float value() const {
     return GetField<float>(VT_VALUE, 0.0f);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_NAME) &&
            verifier.VerifyString(name()) &&
@@ -427,7 +432,8 @@ struct StringProperty FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::String *value() const {
     return GetPointer<const ::flatbuffers::String *>(VT_VALUE);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_NAME) &&
            verifier.VerifyString(name()) &&
@@ -496,7 +502,8 @@ struct PropertyBag FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::StringProperty>> *strings() const {
     return GetPointer<const ::flatbuffers::Vector<::flatbuffers::Offset<onnxruntime::fbs::StringProperty>> *>(VT_STRINGS);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyOffset(verifier, VT_INTS) &&
            verifier.VerifyVector(ints()) &&
@@ -582,7 +589,8 @@ struct Checkpoint FLATBUFFERS_FINAL_CLASS : private ::flatbuffers::Table {
   const onnxruntime::fbs::PropertyBag *property_bag() const {
     return GetPointer<const onnxruntime::fbs::PropertyBag *>(VT_PROPERTY_BAG);
   }
-  bool Verify(::flatbuffers::Verifier &verifier) const {
+  template <bool B = false>
+  bool Verify(::flatbuffers::VerifierTemplate<B> &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<int32_t>(verifier, VT_VERSION, 4) &&
            VerifyOffset(verifier, VT_MODULE_STATE) &&
@@ -674,14 +682,16 @@ inline bool SizePrefixedCheckpointBufferHasIdentifier(const void *buf) {
       buf, CheckpointIdentifier(), true);
 }
 
+template <bool B = false>
 inline bool VerifyCheckpointBuffer(
-    ::flatbuffers::Verifier &verifier) {
-  return verifier.VerifyBuffer<onnxruntime::fbs::Checkpoint>(CheckpointIdentifier());
+    ::flatbuffers::VerifierTemplate<B> &verifier) {
+  return verifier.template VerifyBuffer<onnxruntime::fbs::Checkpoint>(CheckpointIdentifier());
 }
 
+template <bool B = false>
 inline bool VerifySizePrefixedCheckpointBuffer(
-    ::flatbuffers::Verifier &verifier) {
-  return verifier.VerifySizePrefixedBuffer<onnxruntime::fbs::Checkpoint>(CheckpointIdentifier());
+    ::flatbuffers::VerifierTemplate<B> &verifier) {
+  return verifier.template VerifySizePrefixedBuffer<onnxruntime::fbs::Checkpoint>(CheckpointIdentifier());
 }
 
 inline void FinishCheckpointBuffer(
