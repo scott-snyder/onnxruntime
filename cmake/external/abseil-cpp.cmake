@@ -47,6 +47,7 @@ if (GDK_PLATFORM)
   target_compile_definitions(absl_symbolize PRIVATE WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP)
 endif()
 
+if(NOT onnxruntime_DISABLE_ABSEIL)
 # TODO: since multiple ORT's dependencies depend on Abseil, the list below would vary from version to version.
 # We'd better to not manually manage the list.
 set(ABSEIL_LIBS
@@ -75,13 +76,13 @@ absl::demangle_internal
 absl::optional
 absl::stacktrace
 absl::base
-absl::demangle_rust
+#absl::demangle_rust
 absl::bad_optional_access
 absl::strings_internal
 absl::debugging_internal
 absl::int128
 absl::spinlock_wait
-absl::decode_rust_punycode
+#absl::decode_rust_punycode
 absl::raw_logging_internal
 absl::flat_hash_set
 absl::flat_hash_map
@@ -90,18 +91,18 @@ absl::node_hash_set
 absl::compare
 absl::base_internal
 absl::nullability
-absl::bounded_utf8_length_sequence
+#absl::bounded_utf8_length_sequence
 absl::log_severity
 absl::type_traits
 absl::atomic_hook
 absl::bits
 absl::flags_commandlineflag_internal
-absl::hash_container_defaults
+#absl::hash_container_defaults
 absl::numeric_representation
 absl::node_slot_policy
 absl::core_headers
 absl::dynamic_annotations
-absl::utf8_for_code_point
+#absl::utf8_for_code_point
 absl::errno_saver
 absl::absl_check
 absl::hash_function_defaults
@@ -143,3 +144,4 @@ absl::memory
 absl::charset
 absl::endian
 absl::config)
+endif()
