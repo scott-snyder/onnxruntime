@@ -2,6 +2,4 @@
 
 # namespace: fbs
 
-class ArgType(object):
-    INPUT = 0
-    OUTPUT = 1
+# NOTE ArgType.py does not declare any structs or enums
