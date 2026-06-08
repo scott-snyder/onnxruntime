@@ -329,6 +329,9 @@ else()
     # suppress warnings from flatbuffers
     string(APPEND CMAKE_CXX_FLAGS " -Wno-restrict ")
     string(APPEND CMAKE_C_FLAGS   " -Wno-restrict ")
+
+    # Warnings seen with 16.1.
+    string(APPEND CMAKE_CXX_FLAGS " -Wno-sfinae-incomplete ")
   endif()
   # Check support for AVX and f16c.
   include(CheckCXXCompilerFlag)
