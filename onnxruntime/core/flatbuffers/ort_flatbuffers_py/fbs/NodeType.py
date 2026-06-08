@@ -2,4 +2,6 @@
 
 # namespace: fbs
 
-# NOTE NodeType.py does not declare any structs or enums
+class NodeType(object):
+    Primitive = 0
+    Fused = 1

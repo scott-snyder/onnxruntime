@@ -2,4 +2,7 @@
 
 # namespace: fbs
 
-# NOTE DimensionValueType.py does not declare any structs or enums
+class DimensionValueType(object):
+    UNKNOWN = 0
+    VALUE = 1
+    PARAM = 2
