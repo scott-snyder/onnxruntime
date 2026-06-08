@@ -1,7 +1,7 @@
 {
   "version": 5,
-  "prev": "101b3305e8c92124833ae5e0863f05c72aec1d12",
-  "head": "60f66dde3c24304e88ce4e9b6d47b01753f836c5",
+  "prev": "43a3dc4e284355636ebc8130703be80ee1405f1e",
+  "head": "6de2987c69b8cab1570b8dd3b8d62fb21251c877",
   "applied": [
     "local",
     "flatbuffers25",
@@ -14,10 +14,10 @@
       "oid": "aeda84b40a1e0e82b533d52dcce37dacbe409095"
     },
     "flatbuffers25": {
-      "oid": "03b7ec43f4529148762c2b6f1d95284c450592bb"
+      "oid": "d16af374748eb83633fdc930ebd74cafd1e4d193"
     },
     "abseil-20260107": {
-      "oid": "60f66dde3c24304e88ce4e9b6d47b01753f836c5"
+      "oid": "6de2987c69b8cab1570b8dd3b8d62fb21251c877"
     }
   }
 }
