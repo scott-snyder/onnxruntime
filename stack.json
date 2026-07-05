@@ -1,13 +1,14 @@
 {
   "version": 5,
-  "prev": "8d759930e051d18651dc9b4d779b2761c0ebc77e",
-  "head": "9f0a033257fd0530bbbad35103d3d7b5c3629d6f",
+  "prev": "432bc46f55dacc568a0f03885c1b50cfd87f1bb3",
+  "head": "8c1f0291b9f62e204473ca22266289a84c8328f8",
   "applied": [
     "local",
-    "abseil-20260107",
+    "abseil-20260107"
+  ],
+  "unapplied": [
     "flatbuffers25"
   ],
-  "unapplied": [],
   "hidden": [],
   "patches": {
     "local": {
