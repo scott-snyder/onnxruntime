@@ -1,15 +1,19 @@
 {
   "version": 5,
-  "prev": "87c4496956ee5b21d362f1907f153c4053a01837",
-  "head": "e5133dab5c69b30f923a64e589014f5eea5b25ae",
+  "prev": "9329b755b7e39aaff290052c1e323fdbf1f785fc",
+  "head": "46aa6691a35a5544102164114346417668660ba4",
   "applied": [
-    "local"
+    "local",
+    "abseil-20260107"
   ],
   "unapplied": [],
   "hidden": [],
   "patches": {
     "local": {
       "oid": "e5133dab5c69b30f923a64e589014f5eea5b25ae"
+    },
+    "abseil-20260107": {
+      "oid": "46aa6691a35a5544102164114346417668660ba4"
     }
   }
 }
