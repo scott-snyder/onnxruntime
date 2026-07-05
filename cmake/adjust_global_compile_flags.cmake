@@ -283,6 +283,9 @@ else()
       # https://github.com/google/XNNPACK/issues/7650
       string(APPEND CMAKE_C_FLAGS   " -Wno-incompatible-pointer-types ")
     endif()
+
+    # Warnings seen with 16.1.
+    string(APPEND CMAKE_CXX_FLAGS " -Wno-sfinae-incomplete ")
   endif()
   # Check support for AVX and f16c.
   include(CheckCXXCompilerFlag)
