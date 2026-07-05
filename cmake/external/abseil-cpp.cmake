@@ -41,7 +41,7 @@ onnxruntime_fetchcontent_declare(
     URL_HASH SHA1=${DEP_SHA1_abseil_cpp}
     EXCLUDE_FROM_ALL
     PATCH_COMMAND ${ABSL_PATCH_COMMAND}
-    FIND_PACKAGE_ARGS 20250814 NAMES absl
+    FIND_PACKAGE_ARGS 20260107 NAMES absl
 )
 
 onnxruntime_fetchcontent_makeavailable(abseil_cpp)
@@ -64,6 +64,7 @@ if (GDK_PLATFORM)
   target_compile_definitions(absl_symbolize PRIVATE WINAPI_FAMILY=WINAPI_FAMILY_DESKTOP_APP)
 endif()
 
+if(NOT onnxruntime_DISABLE_ABSEIL)
 # TODO: since multiple ORT's dependencies depend on Abseil, the list below would vary from version to version.
 # We'd better to not manually manage the list.
 # This list is generated using tools/python/resolve_absl_deps_dynamic.py for Abseil version 20250814.0
@@ -76,7 +77,7 @@ absl::time_zone
 absl::civil_time
 absl::symbolize
 absl::demangle_internal
-absl::demangle_rust
+#absl::demangle_rust
 absl::stacktrace
 absl::debugging_internal
 absl::malloc_internal
@@ -149,4 +150,6 @@ absl::config
 absl::absl_log
 absl::log_internal_log_impl
 absl::absl_check
-absl::log_internal_check_impl)
+absl::log_internal_check_impl
+)
+endif()
