@@ -1,0 +1,6 @@
+Bottom: c9812cc259774aedb750f5218a0d6e48bfecec5e
+Top:    4351b50b367018c43e8f2560fdecf494d2e8e77f
+Author: sss <sss@karma>
+Date:   2025-05-05 17:18:07 -0400
+
+Rerun flatbuffer compiler for flatbuffers 25.12
