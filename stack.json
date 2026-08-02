@@ -1,10 +1,11 @@
 {
   "version": 5,
-  "prev": "50334802d99c4800d14463cf501e21a474d7f8a6",
-  "head": "cfd9ea14a063422325041897bd2dd60f1dfe934f",
+  "prev": "7efbd0a2e74ec6e3e31ac85bf41ada2f82c3dbd7",
+  "head": "559296841e052f454a06601ecea943f54b7bca2a",
   "applied": [
     "local",
-    "abseil-20260107"
+    "abseil-20260107",
+    "flatbuffers25"
   ],
   "unapplied": [],
   "hidden": [],
@@ -14,6 +15,9 @@
     },
     "abseil-20260107": {
       "oid": "cfd9ea14a063422325041897bd2dd60f1dfe934f"
+    },
+    "flatbuffers25": {
+      "oid": "559296841e052f454a06601ecea943f54b7bca2a"
     }
   }
 }
